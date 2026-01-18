@@ -1,102 +1,379 @@
-Act as an expert Frontend Developer.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shajalal Mozumder | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8;
+            --ring-gradient: conic-gradient(#0ea5e9, #22d3ee, #818cf8, #c084fc, #0ea5e9);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
 
-Create a modern, mobile-first single-page portfolio website
-using ONLY HTML, CSS, and Vanilla JavaScript in ONE HTML file.
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #f1f5f9;
+                --card-bg: #ffffff;
+                --text-main: #1e293b;
+                --text-dim: #64748b;
+                --accent: #0284c7;
+                --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
 
-STRICT RULES:
-- Output ONLY the final complete HTML file
-- Do NOT add explanations, comments, or extra text
-- Do NOT change structure, animation, colors, or layout
-- Must be pixel-perfect and behavior-perfect
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-DESIGN REQUIREMENTS:
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.4s ease;
+            overflow-x: hidden;
+        }
 
-1) Theme & Fonts
-- Use Google Font: Poppins (300, 400, 600, 700)
-- Use Font Awesome 6 icons
-- Dark mode by default
-- Automatic light mode using prefers-color-scheme
-- Smooth transitions between modes
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
 
-2) Layout
-- Centered card layout
-- Max width: 450px
-- Full viewport height
-- Mobile-first design
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-3) Profile Image Section
-- Circular profile image (132px)
-- Image URL: picked_image1743885164951580537.jpg
-- Remove any black or static circles
-- Add ONE animated spinning color ring using conic-gradient
-- Colors must be:
-  #0ea5e9, #22d3ee, #818cf8, #c084fc
-- Continuous smooth rotation (2s linear infinite)
-- Inner cut-out must match background color automatically (light/dark)
+        .profile-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: background-color 0.4s ease;
+        }
 
-4) Name & Verification
-- Name text: Shajalal Mozumder 
-- Add verified badge using Font Awesome stack
-- Verified color: Twitter-style blue
+        .image-container {
+            position: relative;
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-5) BIO Typing Animation
-- Place the typing text directly under the name section
-- This section represents the BIO
-- Text color must use the accent color
-- Font weight: medium
-- Font size optimized for mobile
-- Typing text:
-  BIO Student 
-- Implement smooth typing animation (no deleting)
-- Include a blinking cursor "|"
-- Cursor color must match accent color
-- Animation starts automatically on page load
-- Text remains visible after typing completes
+        .spin-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--ring-gradient);
+            animation: rotate 2s linear infinite;
+        }
 
-6) Info Card
-- Rounded card with shadow
-- Rows with label on left and value on right
-- Content:
-  Age: 13
-  Gender: male
-  Religion: Islam
-  Country: Bangladesh 
-  Address: laksham, cumilla 
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-7) Contact Button
-- Full-width gradient button
-- Text: "Contact Me"
-- On click:
-  - Smoothly expand/collapse contact section
-  - Icon changes (down/up arrow)
-  - Animated height + opacity
+        .profile-img {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            background-image: url('picked_image1743885164951580537.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--card-bg);
+            z-index: 2;
+            transition: border-color 0.4s ease;
+        }
 
-8) Contact Section
-- Hidden by default
-- Grid layout (3 columns)
-- Buttons with icons and brand colors
-- Links:
-  
-  Tiktok: https://tiktok.com/@iamshajalal
-  WhatsApp: https://wa.me/01756437135
-  Telegram: https://t.me/iamshajalal
-  YouTube: https://youtube.com/@iamshajalal
-  Instagram: https://Instagram.com/iamshajalal 
+        .name-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
 
-9) Footer
-- Text:
-  © 2026 Shajalal Mozumder. All rights reserved.
-- Social icons row:
-  Facebook
-  WhatsApp
-  Telegram
-  YouTube
+        .name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
 
-10) Animations
-- Fade-in on load
-- Typing animation
-- Spinning gradient ring
-- Button press scale effect
+        .verified {
+            color: #1DA1F2;
+            font-size: 1.1rem;
+        }
 
-OUTPUT:
-Return ONLY the final HTML code that produces EXACTLY this website.
+        .bio-text {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
+            height: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--accent);
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .info-grid {
+            margin-bottom: 24px;
+            border-top: 1px solid var(--text-dim);
+            padding-top: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+
+        .info-label {
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .info-value {
+            font-weight: 600;
+        }
+
+        .contact-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0ea5e9, #818cf8);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.1s;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .contact-btn:active {
+            transform: scale(0.97);
+        }
+
+        .contact-section {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease;
+            margin-top: 0;
+        }
+
+        .contact-section.active {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .grid-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .social-card:active {
+            transform: scale(0.9);
+        }
+
+        .social-card i {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+
+        footer {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+        }
+
+        /* Brand Colors */
+        .fa-tiktok { color: #ff0050; }
+        .fa-whatsapp { color: #25d366; }
+        .fa-telegram { color: #0088cc; }
+        .fa-youtube { color: #ff0000; }
+        .fa-instagram { color: #e1306c; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="image-container">
+                <div class="spin-ring"></div>
+                <div class="profile-img"></div>
+            </div>
+
+            <div class="name-wrapper">
+                <h1 class="name">Shajalal Mozumder</h1>
+                <span class="fa-stack verified">
+                    <i class="fa-solid fa-certificate fa-stack-2x"></i>
+                    <i class="fa-solid fa-check fa-stack-1x fa-inverse" style="font-size: 0.5em;"></i>
+                </span>
+            </div>
+
+            <div class="bio-text" id="typewriter"></div>
+
+            <div class="info-grid">
+                <div class="info-row">
+                    <span class="info-label">Age</span>
+                    <span class="info-value">13</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Gender</span>
+                    <span class="info-value">male</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Religion</span>
+                    <span class="info-value">Islam</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Country</span>
+                    <span class="info-value">Bangladesh</span>
+                </div>
+                <div class="info-row" style="margin-bottom: 0;">
+                    <span class="info-label">Address</span>
+                    <span class="info-value">laksham, cumilla</span>
+                </div>
+            </div>
+
+            <button class="contact-btn" id="contactToggle">
+                Contact Me <i class="fa-solid fa-chevron-down" id="arrowIcon"></i>
+            </button>
+
+            <div class="contact-section" id="contactSection">
+                <div class="grid-links">
+                    <a href="https://tiktok.com/@iamshajalal" class="social-card">
+                        <i class="fa-brands fa-tiktok"></i> TikTok
+                    </a>
+                    <a href="https://wa.me/01756437135" class="social-card">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://t.me/iamshajalal" class="social-card">
+                        <i class="fa-brands fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://youtube.com/@iamshajalal" class="social-card">
+                        <i class="fa-brands fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://Instagram.com/iamshajalal" class="social-card">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-socials">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://wa.me/01756437135"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://t.me/iamshajalal"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://youtube.com/@iamshajalal"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <p class="footer-text">© 2026 Shajalal Mozumder. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Typing Animation
+        const text = "BIO Student";
+        const container = document.getElementById('typewriter');
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                container.innerHTML = text.substring(0, i + 1) + '<span class="cursor">|</span>';
+                i++;
+                setTimeout(type, 150);
+            } else {
+                container.innerHTML = text + '<span class="cursor">|</span>';
+            }
+        }
+
+        // Contact Toggle
+        const btn = document.getElementById('contactToggle');
+        const section = document.getElementById('contactSection');
+        const icon = document.getElementById('arrowIcon');
+
+        btn.addEventListener('click', () => {
+            const isActive = section.classList.toggle('active');
+            icon.className = isActive ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down';
+        });
+
+        // Initialize
+        window.onload = type;
+    </script>
+</body>
+  </html>
